@@ -27,13 +27,71 @@ def start_game():
             choose_path_left(weapon)
 
         elif direction == "right":
-            choice = input("Okay, you now see a bridge, do you want to swim under or cross it? (swim/cross) ").lower()
+            action = input("You go right and walk for some time. You find an old trader. Will you try to barter or mug him?  (barter/mug) ").lower()
             clear_screen()
-            if choice == "swim" and weapon == "axe":
-                print("You got eaten by a brain eating amoeba.")
-                print("Game Over.")
-            else:
-                print("You successfully crossed and banged Princess Peach!")
+
+            if action == "barter":
+                if weapon == "sword":
+                    print("He took advantage of your kind and used his magic and turned you into a frog.")
+                    print("Game Over.")
+                    return
+                
+                elif weapon == "axe":
+                    print("You chopped his head off and found a pouch of magic beans.")
+                    action = input("Do you plant the beans or continue on your path? (plant/continue) ").lower()
+                    clear_screen()
+
+                    if action == "plant":
+                        print("A giant bean stalk has grown thru the clouds.")
+                        action = input("Do you climb the stalk or chop it down with your mighty axe? (climb/chop)").lower()
+                        clear_screen()
+
+                        if action == "climb":
+                            print("You attempted to brave the stalk by climbing it.")
+                            print("You fell to your death.")
+                            print("Game Over.")
+                            return
+                        
+                        elif action == "plant":
+                            print("You chopped the stalk down and it crushed you as it fell.")
+                            print("Game Over.")
+                            return
+                        
+                    elif action == "continue":
+                        print("You continued on your path for many more miles only to die of dehydration.")
+                        print("Game Over.")
+                        return
+
+            elif action == "mug":
+                if weapon == "sword":
+                    print("He zapped you with his wand and collected your soul.")
+                    print("Game Over.")
+                    return
+                
+                elif weapon == "axe":
+                    action = input("You decapitated him with your mighty axe and stole his pouch of magic beans. Do you plant them or continue on the path? (plant/continue)").lower()
+                    clear_screen()
+
+                    if action == "plant":
+                        print("A mighty bean stalk taller than the heavens has grown.")
+                        action = input("Will you climb or chop it down? (climb/chop)").lower()
+                        clear_screen()
+
+                        if action == "climb":
+                            print("You attempted to climb the mighty stalk and fell to your death.")
+                            print("Game Over.")
+                            return
+                        
+                        elif action == "chop":
+                            print("You chopped down the mighty stalk and it rained gold coins from the heavens down, making you abundantly rich.")
+                            print("You Won!")
+                            return
+                        
+                    elif action == "continue":
+                        print("You continued down the path and found nothing.")
+                        print("Now you are hungry and died of starvation.")
+                        print("Game Over.")
+                        return
 
     else:
         clear_screen()
@@ -55,6 +113,7 @@ def choose_path_left(weapon):
             elif action == "no":
                 print("The hedge does look intimidating, maybe we should save our strength.")
         #Straight Action Choice
+
         elif path_choice == "straight":
             action = input("You've went straight. There is a river flowing heavily downstream. Will you attempt to brave the waters? (yes/no)").lower()
             clear_screen()
@@ -63,18 +122,22 @@ def choose_path_left(weapon):
                 print("You attempted to brave the waters and drowned from the currents.")
                 print("Game Over.")
                 return
+            
             elif action == "no":
                 print("This seems to be a good choice. We shall live to see another day!")
+
         #Right Path Choice
         elif path_choice == "right":
             action = input("You went right. There seems to be an open path with nothing in the distance. Keep walking? (yes/no)").lower()
             clear_screen()
+
             #THIS IS WHERE YOU LEFT OFF. FIGURE OUT HOW TO RETURN TO OPEN PATH IF THEY DONT ENTER THE CAVE. IF THEY RETURN AND CONTINUE DIE OF DEHYDRATION
             if action == "yes":
                 print("You continued walking and stumbled upon a cave.")
                 action = input("Do you want to enter the cave? (yes/no)").lower()
                 clear_screen()
 
+                #IM PRETTY SURE YOU TAKE THIS MAKE A FUNCTION LIKE THE MAIN CHOICE PATH AND MAKE A NEW RETURN CHOICE IF NOT "no."
                 if action == "yes":
                     print("The cave is warm and you hear sounds of heavy breathing.")
                     action = input("Investigate the noises or return? (investigate/return)").lower()
@@ -89,6 +152,7 @@ def choose_path_left(weapon):
                                 print("You drew your sword courageously, slew the dragon and claimed his pile of gold for your own.")
                                 print("You Won.")
                                 return
+                            
                             elif weapon == "axe":
                                 print("Your axe was no match for the dragon. He burnt you into smithereens.")
                                 print("Game Over")
@@ -96,11 +160,18 @@ def choose_path_left(weapon):
                             
                         elif action == "retreat":
                             print("You retreated like a cowardly dog.")
+                            print("You exited the cave and continue on your path walking for hours only to find nothing and die of dehydration...")
+                            print("Game Over.")
                             
                     elif action == "return":
-                        print("You returned to your comfortable path, taking no risks.")
+                        print("You returned to your comfortable path, taking no risks. Your reward was you walked for miles to find nothing and die of dehydration...")
+                        print("Game Over.")
+                        return
+                        
                 elif action == "no":
-                    print("You continue on your path.")
+                    print("You continue on your path walking for hours only to find nothing and die of dehydration...")
+                    print("Game Over.")
+                    return
 
             elif action == "no":
                 print("Turn back to the three paths.")
